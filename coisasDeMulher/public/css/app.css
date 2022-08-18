@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'honey';
+    src: url('../font/ananda_2/Ananda\ Black\ Personal\ Use.ttf');
+}
+
+.font {
+    font-family: 'honey';
+    font-size: 40px;
+    color: #F86666;
+    letter-spacing: 2px;
+}
+
+.items-menu {
+    font-family: 'honey';
+    font-size: 17px;
+    color: #F86666;
+    letter-spacing: 2px;    
+}
+
+.category-title {
+    font-family: 'honey';
+    font-size: 27px;
+    color: #F86666;
+    letter-spacing: 2px;    
+}
+
+.border-category {
+
+    height: 40px;
+
+    border-top: 1px solid #F86666;
+    border-right: none;
+    border-bottom: 1px solid #F86666;
+    border-left: none;
+}
+
+.list-x {
+    overflow-x: scroll;
+}
+
+.list-x::-webkit-scrollbar {
+    height: 3px;
+}
+.list-x::-webkit-scrollbar-thumb {
+    background-color: #F86666;
+}
+
+.list-product {
+    list-style: none;
+}
+
+.img-sm-product {
+    max-height: 340px;
+    min-height: 340px;
+}
