@@ -15,8 +15,8 @@
                         <h5 class="card-title">Sandália Colcci</h5>
                         <p class="card-text">R$ 119,90</p>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn adc_carrinho">Adicionar ao carrinho</a>
+                    <div class="card-footer footer">
+                        <a href="#" class="btn footer">Adicionar ao carrinho</a>
                             @if(session()->get('usuario') && session()->get('usuario')['adm'] == 1)
                             <a href="#" class="btn adc_carrinho mt-1 w-100">Editar</a>
                             @endif
@@ -32,8 +32,8 @@
                         <h5 class="card-title">Sandália Colcci</h5>
                         <p class="card-text">R$ 119,90</p>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn adc_carrinho">Adicionar ao carrinho</a>
+                    <div class="card-footer footer">
+                        <a href="#" class="btn footer">Adicionar ao carrinho</a>
                             @if(session()->get('usuario') && session()->get('usuario')['adm'] == 1)
                             <a href="#" class="btn adc_carrinho mt-1 w-100">Editar</a>
                             @endif
@@ -49,8 +49,8 @@
                         <h5 class="card-title">Sandália Colcci</h5>
                         <p class="card-text">R$ 119,90</p>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn adc_carrinho">Adicionar ao carrinho</a>
+                    <div class="card-footer footer">
+                        <a href="#" class="btn footer">Adicionar ao carrinho</a>
                             @if(session()->get('usuario') && session()->get('usuario')['adm'] == 1)
                             <a href="#" class="btn adc_carrinho mt-1 w-100">Editar</a>
                             @endif
@@ -66,8 +66,8 @@
                         <h5 class="card-title">Sandália Colcci</h5>
                         <p class="card-text">R$ 119,90</p>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn adc_carrinho">Adicionar ao carrinho</a>
+                    <div class="card-footer footer">
+                        <a href="#" class="btn footer">Adicionar ao carrinho</a>
                             @if(session()->get('usuario') && session()->get('usuario')['adm'] == 1)
                             <a href="#" class="btn adc_carrinho mt-1 w-100">Editar</a>
                             @endif

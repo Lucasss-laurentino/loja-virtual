@@ -5,7 +5,7 @@
 
 .font {
     font-family: 'honey';
-    font-size: 40px;
+    font-size: 25px;
     color: #F86666;
     letter-spacing: 2px;
 }
@@ -52,4 +52,42 @@
 .img-sm-product {
     max-height: 340px;
     min-height: 340px;
+}
+
+.btn-modal-close {
+    color: #F86666;
+}
+
+.footer {
+    background-color: #F86666;
+    color: white;
+}
+
+.button-redes {
+    background-color: white;
+
+    border-radius: 0;
+}
+.button-redes:hover {
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #F86666;
+    border-left: none;
+}
+
+.paragrafo {
+    color: #F86666;
+    font-family: 'honey';
+}
+.links {
+    color: #F86666;
+    text-decoration: underline;
+    font-size: 16px;
+}
+.active {
+    text-decoration: underline;
+}
+.list-category:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

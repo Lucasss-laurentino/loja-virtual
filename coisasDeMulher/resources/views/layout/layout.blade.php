@@ -26,7 +26,7 @@
     </head>
     <body class="antialiased">
         <div class="container-fluid p-0">
-            <nav class="navbar navbar-expand-lg bg-white">
+            <nav class="navbar navbar-expand-lg bg-white p-0">
                 <div class="d-block w-100">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
                     <div class="d-flex justify-content-around">
                         <a class="navbar-brand font d-flex align-items-center mx-4" href="#">
                             Coisas de Mulher
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-handbag-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-handbag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z"/>
                             </svg>        
                         </a>
@@ -48,12 +48,21 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center items-menu" href="#">
+                                    <a class="nav-link d-flex align-items-center items-menu" id="login" data-toggle="modal" data-target="#exampleModalCenter">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person mx-2" viewBox="0 0 16 16">
                                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                                     </svg>
                                     </a>
                                 </li>
+                                @if(session()->get('user') != null)
+                                <li class="nav-item">
+                                    <a href="" class="nav-link dflex align0itemx-center items-menu">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                                @endif
                                 <li class="nav-item">
                                     <a class="nav-link disabled d-flex align-items-center items-menu" href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
@@ -64,28 +73,107 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="container-fluid">
-                        <div class="container d-flex justify-content-center my-5">
-                            <h2 class="items-menu category-title">Pesquise por categorias</h2>
-                        </div>
-                        <ul class="mt-5 border-category d-flex align-items-center list-x" style="height: 60px;">
-                            <li class="d-inline mx-5 items-menu" style="width: 15%;">Roupas</li>
-                            <li class="d-inline mx-5 items-menu" style="width: 15%;">Langirier</li>
-                            <li class="d-inline mx-5 items-menu" style="width: 15%;">Calçados</li>
-                            <li class="d-inline mx-5 items-menu" style="width: 15%;">Bolsas</li>
-                            <li class="d-inline mx-5 items-menu" style="width: 15%;">Perfumes</li>
-                            <li class="d-inline mx-5 items-menu" style="width: 15%;">Maquiagens</li>
-                        </ul>
-                    </div>
                 </div>
             </nav>
+            
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="ratio" style="--bs-aspect-ratio: 40%;">
+                            <img src="{{ asset('img/carrousel-roupas/Banner2.png') }}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="ratio" style="--bs-aspect-ratio: 40%;">
+                            <img src="{{ asset('img/carrousel-roupas/Banner1.png') }}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="container-fluid">
+                <ul class="mt-5 border-category d-flex align-items-center list-x" style="height: 60px;">
+                    <li class="d-inline mx-5 items-menu list-category active" style="width: 15%;" value="1">Roupas</li>
+                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="2">Langirier</li>
+                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="3">Calçados</li>
+                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="4">Bolsas</li>
+                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="5">Perfumes</li>
+                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="6">Maquiagens</li>
+                </ul>
+            </div>
         </div>
         @yield('content')
+
+        <!--- Modal --->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title category-title" id="exampleModalLongTitle">Coisas de Mulher</h5>
+                        <button type="button" class="close bg-white btn-modal-close" data-dismiss="modal" aria-label="Close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>      
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="container" style="width:60%;">
+                            <button class="button-redes w-100 d-flex justify-content-around p-1 my-3">
+                                <img src="{{ asset('img/google-svgrepo-com.svg') }}" alt="" width="25" height="25">
+                                <p class="m-0 paragrafo">Faça login com o Google</p>
+                            </button>
+                            <button class="button-redes w-100 d-flex justify-content-around p-1 align-items-center">
+                                <img src="{{ asset('img/facebook-svgrepo-com.svg') }}" class="ml-1" width="25" height="25">
+                                <p class="m-0 paragrafo">Faça login com o Facebook</p>
+                            </button>
+                        </div>
+                        <p class="my-4 btn-modal-close">Ao fazer login você concorda com nossa poliítica e termos</p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <footer class="text-center footer text-lg-start borda-nav bottom-fixed">
+            <section class="pt-3">
+                <div class="container text-center text-md-start mt-5">
+                    <div class="row mt-3">
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h4 class="titulo-card">Política & termos</h4>
+                            <p>
+                                <a href="" class="text-decoration-underline">Política de privacidade</a>
+                            </p>
+                            <p>
+                                <a href="" class="text-decoration-underline">Termos de uso</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <h4 class="titulo-card">Contato</h4>
+                            <p>
+                                contato@coisasdemulher.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="text-center footer p-4">
+                <p>© 2022 Copyright: coisasdemulher.com</p>
+            </div>
+        </footer>
+
     </body>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
-
+    <script src="{{ asset('js/modal.js') }}"></script>
+    <script src="{{ asset('js/active.js') }}"></script>
     <script>
         $(document).ready(function(){
             var tam = $(window).width();
