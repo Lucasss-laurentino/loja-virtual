@@ -41,12 +41,13 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto mx-4">
                                 <li class="nav-item active">
-                                    <a class="nav-link d-flex align-items-center items-menu" href="#">
+                                    <a class="nav-link d-flex align-items-center items-menu" href="{{ route('produtos.index') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door mx-2" viewBox="0 0 16 16">
                                         <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
                                     </svg>
                                     </a>
                                 </li>
+                                @if(session()->get('user') === null)
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center items-menu" id="login" data-toggle="modal" data-target="#exampleModalCenter">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person mx-2" viewBox="0 0 16 16">
@@ -54,6 +55,7 @@
                                     </svg>
                                     </a>
                                 </li>
+                                @endif
                                 @if(session()->get('user') != null)
                                 <li class="nav-item">
                                     <a href="" class="nav-link dflex align0itemx-center items-menu">
@@ -62,14 +64,30 @@
                                         </svg>
                                     </a>
                                 </li>
-                                @endif
                                 <li class="nav-item">
-                                    <a class="nav-link disabled d-flex align-items-center items-menu" href="#">
+                                    <a class="nav-link d-flex align-items-center items-menu" href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                                         </svg>                            
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  d-flex align-items-center items-menu" href="{{ route('logout') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                                            <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                                @endif
+                                @if(session()->get('user') === null)
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center items-menu" href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                        </svg>                            
+                                    </a>
+                                </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -126,14 +144,18 @@
                     </div>
                     <div class="modal-body text-center">
                         <div class="container" style="width:60%;">
-                            <button class="button-redes w-100 d-flex justify-content-around p-1 my-3">
-                                <img src="{{ asset('img/google-svgrepo-com.svg') }}" alt="" width="25" height="25">
-                                <p class="m-0 paragrafo">Faça login com o Google</p>
-                            </button>
-                            <button class="button-redes w-100 d-flex justify-content-around p-1 align-items-center">
-                                <img src="{{ asset('img/facebook-svgrepo-com.svg') }}" class="ml-1" width="25" height="25">
-                                <p class="m-0 paragrafo">Faça login com o Facebook</p>
-                            </button>
+                            <form action="{{ route('social.login', ['provider' => 'google']) }}" method="GET">
+                                <button class="button-redes w-100 d-flex justify-content-around p-1 my-3">
+                                    <img src="{{ asset('img/google-svgrepo-com.svg') }}" alt="" width="25" height="25">
+                                    <p class="m-0 paragrafo">Faça login com o Google</p>
+                                </button>
+                            </form>
+                            <form action="{{ route('social.login', ['provider' => 'facebook']) }}">
+                                <button class="button-redes w-100 d-flex justify-content-around p-1 align-items-center">
+                                    <img src="{{ asset('img/facebook-svgrepo-com.svg') }}" class="ml-1" width="25" height="25">
+                                    <p class="m-0 paragrafo">Faça login com o Facebook</p>
+                                </button>
+                            </form>
                         </div>
                         <p class="my-4 btn-modal-close">Ao fazer login você concorda com nossa poliítica e termos</p>
                     </div>
