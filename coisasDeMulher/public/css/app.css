@@ -75,6 +75,30 @@
     border-left: none;
 }
 
+.input-border {
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #F86666;
+    border-left: none;
+
+    border-radius: 0;
+}
+
+.input {    
+    color: #F86666;
+}
+
+.check-per {
+    color: #F86666;
+}
+.input::placeholder {
+    color: #F86666;
+
+}
+.input:hover {
+    letter-spacing: 2px;
+    transition: 1s;
+}
 .paragrafo {
     color: #F86666;
     font-family: 'honey';

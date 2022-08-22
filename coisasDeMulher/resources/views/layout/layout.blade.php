@@ -26,6 +26,8 @@
     </head>
     <body class="antialiased">
         <div class="container-fluid p-0">
+
+            <!--- Nav bar --->
             <nav class="navbar navbar-expand-lg bg-white p-0">
                 <div class="d-block w-100">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,11 +60,11 @@
                                 @endif
                                 @if(session()->get('user') != null)
                                 <li class="nav-item">
-                                    <a href="" class="nav-link dflex align0itemx-center items-menu">
+                                    <button href="" id="adc-product" class="nav-link bg-white items-menu">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
                                         </svg>
-                                    </a>
+                                    </button>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center items-menu" href="#">
@@ -94,7 +96,8 @@
                 </div>
             </nav>
             
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <!--- Carrousel --->
+            <div id="carouselExampleControls" class="carousel slide d-block" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="ratio" style="--bs-aspect-ratio: 40%;">
@@ -116,6 +119,89 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+
+            <!--- Formulario cadastro de produto --->
+            <div id="form-product" class="container d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <form enctype="multipart/form-data" action="" method="post">
+                        @csrf
+                        <div class="form-group py-2">
+                            <input type="text" class="form-control input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Nome">
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="text" class="form-control input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Fabricante">
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="number" min="1" class="form-control input-border input p-0" id="estoque" name="estoque" style="height: 40px;" placeholder="Estoque (total em produto)">
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="number" min="1" class="form-control input-border input p-0" id="preco" name="preco" style="height: 40px;" placeholder="Preço unidade">
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="exampleInputEmail1" class="d-block input">Categoria</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="roupa" id="roupa" value="option1">
+                                <label class="form-check-label input" for="inlineRadio1">Roupa</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="lingirier" id="lingirier" value="option2">
+                                <label class="form-check-label check-per" for="inlineRadio2">Langirier</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="calcado" id="calcado" value="option2">
+                                <label class="form-check-label check-per" for="inlineRadio2">Calçado</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="bolsa" id="bolsa" value="option2">
+                                <label class="form-check-label check-per" for="inlineRadio2">Bolsa</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="perfume" id="perfume" value="option2">
+                                <label class="form-check-label check-per" for="inlineRadio2">Perfume</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="maquiagem" id="maquiagem" value="option2">
+                                <label class="form-check-label check-per" for="inlineRadio2">Maquiagem</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="exampleInputEmail1" class="input">Sub categoria</label>
+                            <select class="form-control form-control-sm input-border">
+                                <option>Selecione uma sub categoria</option>
+                            </select>
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="exampleInputEmail1" class="d-block input">Tamanho</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label check-per" for="inlineCheckbox1">P</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label check-per" for="inlineCheckbox2">M</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label check-per" for="inlineCheckbox2">G</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label check-per" for="inlineCheckbox2">GG</label>
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
+                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                            </div>
+                            <div class="form-group my-3 d-flex justify-content-center">
+                                <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!--- Lista de categoria --->
             <div class="container-fluid">
                 <ul class="mt-5 border-category d-flex align-items-center list-x" style="height: 60px;">
                     <li class="d-inline mx-5 items-menu list-category active" style="width: 15%;" value="1">Roupas</li>
@@ -163,6 +249,7 @@
             </div>
         </div>  
 
+        <!--- Footer --->
         <footer class="text-center footer text-lg-start borda-nav bottom-fixed">
             <section class="pt-3">
                 <div class="container text-center text-md-start mt-5">
@@ -191,11 +278,12 @@
         </footer>
 
     </body>
-    <!-- JavaScript Bundle with Popper -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/modal.js') }}"></script>
     <script src="{{ asset('js/active.js') }}"></script>
+    <script src="{{ asset('js/adc-products.js') }}"></script>
     <script>
         $(document).ready(function(){
             var tam = $(window).width();
