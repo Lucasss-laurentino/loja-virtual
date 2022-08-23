@@ -9,3 +9,9 @@ $(document).on('click', '#adc-product', function(e) {
     $('#form-product').toggleClass('d-none');
     $('#form-product').toggleClass('d-block');
 });
+
+$(document).on('click', '#teste', function(e) {
+    e.preventDefault();
+
+    $('#navbarSupportedContent').toggleClass('show');
+});
