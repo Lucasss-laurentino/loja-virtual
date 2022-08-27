@@ -7,15 +7,16 @@
         <title>Laravel</title>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -38,6 +39,7 @@
     <body class="antialiased">
         <div class="container-fluid p-0">
 
+            <!--- Nav --->
             <nav class="navbar navbar-expand-sm m-0 p-0 bg-white">
                 <div class="container justify-content-sm-start mx-4">
                     <a class="navbar-brand font d-flex align-items-center" href="{{ route('produtos.index') }}">
@@ -130,13 +132,17 @@
                 </button>
             </div>
 
-
-            <!--- Escolher cadastro --->
+            <!--- Escolher opções --->
             <div id="form-options" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
                     <div class="container" style="width:60%;">
                         <div class="d-block">
                             <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-categoria"><strong>Cadastrar categoria</strong></button>
+                        </div>
+                        <div class="d-block">
+                            <form method="post">
+                                <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-sub-categoria"><strong>Cadastrar sub categoria</strong></button>
+                            </form>
                         </div>
                         <div class="d-block">
                             <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-produto"><strong>Cadastrar produto</strong></button>
@@ -153,15 +159,64 @@
                             <h4 class="cor">Cadastre uma categoria</h4>
                             <button class="footer rounded" id="fechar-categoria"><strong>voltar</strong></button>
                         </div>
-                        <form class="w-100" action="" method="post">
+                        <form class="w-100" action="{{ route('categories.store') }}" method="post">
                             @csrf
                             <div class="form-group py-2">
-                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Nome">
+                                <input type="text" class="w-100 input-border input p-0" name="categoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Categoria">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
                                 <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--- lista de categoria --->
+            <div id="list-category" class="container d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="container" style="width:80%;">
+                        <div class="container d-flex justify-content-around">
+                            <p id="subCategoryOptions" class="cor m-0">Escolha uma categoria</p>
+                            <button class="footer rounded" id="fechar-sub-categoria"><strong>voltar</strong></button>
+                        </div>
+                        <div class="container d-block">
+                            <ul class="list-group">
+                                @foreach($categories as $category)
+                                <li class="list-group-item d-flex justify-content-center border-white text-center list-categories" id="category{{ $category->id }}">
+                                    <div class="container" style="width:50%;">
+                                        <button class="d-flex justify-content-around mx-2 bg-white font cor hover-list button-category" value="{{ $category->id }}">
+                                            {{ $category->name }}
+                                            <svg xmlns="http://www.w3.org/2000/svg" id="cima{{$category->id}}" width="18" height="18" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" id="baixo{{$category->id}}" width="18" height="18" fill="currentColor" class="bi bi-arrow-bar-down d-none" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+                                            </svg>
+                                        </button>
+                                        <div class="d-none" id="list-sub-categories{{ $category->id }}">
+                                            <ul class="list-group">
+                                                @foreach($category->subCategories as $subCategory)
+                                                <li class="list-group-item cor border-white text-center">{{ $subCategory->subCategoryName }}</li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="d-flex justify-content-center">
+                                                <form style="width:50%;" action="{{ route('subCategory.store', $category->id) }}" method="post">
+                                                    @csrf
+                                                    <div class="form-group py-2">
+                                                        <input type="text" class="w-100 input-border input p-0" name="subCategoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Sub categoria">
+                                                    </div>
+                                                    <div class="form-group my-3 d-flex justify-content-center">
+                                                        <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,7 +295,9 @@
                     <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="6">Maquiagens</li>
                 </ul>
             </div>
+        
         </div>
+
         @yield('content')
 
         <!--- Modal --->

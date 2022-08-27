@@ -75,8 +75,18 @@
     border-left: none;
 }
 
+.list {
+    list-style: none;
+}
+
+.hover-list:hover {
+    text-decoration: underline;
+    color: #F86666;
+}
+
 .cor {
     color: #F86666;
+    font-size: 15px;
 }
 
 .input-border {
