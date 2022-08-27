@@ -75,6 +75,10 @@
     border-left: none;
 }
 
+.cor {
+    color: #F86666;
+}
+
 .input-border {
     border-top: none;
     border-right: none;
@@ -86,6 +90,7 @@
 
 .input {    
     color: #F86666;
+    font-size: 13px;
 }
 
 .check-per {
@@ -93,7 +98,7 @@
 }
 .input::placeholder {
     color: #F86666;
-
+    font-size: 15px;
 }
 .input:hover {
     letter-spacing: 2px;

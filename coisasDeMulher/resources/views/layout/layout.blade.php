@@ -37,9 +37,10 @@
     </head>
     <body class="antialiased">
         <div class="container-fluid p-0">
+
             <nav class="navbar navbar-expand-sm m-0 p-0 bg-white">
                 <div class="container justify-content-sm-start mx-4">
-                    <a class="navbar-brand font d-flex align-items-center" href="#">
+                    <a class="navbar-brand font d-flex align-items-center" href="{{ route('produtos.index') }}">
                         Coisas de mulher
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-handbag-fill" viewBox="0 0 16 16">
                             <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z"/>
@@ -69,11 +70,13 @@
                         @endif
                         @if(session()->get('user') != null)
                         <li class="nav-item">
-                            <button href="" id="adc-product" class="nav-link bg-white items-menu">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
-                                </svg>
-                            </button>
+                            <div class="container-flui w-100 mt-2 mt-md-3 d-flex justify-content-center">
+                                <button href="" id="adc-product" class="nav-link bg-white items-menu d-flex alin-self-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center items-menu justify-content-center" href="#">
@@ -102,6 +105,7 @@
                     </ul>
                 </div>
             </nav>
+
             <!--- Carrousel --->
             <div id="carouselExampleControls" class="carousel slide d-block" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -126,84 +130,102 @@
                 </button>
             </div>
 
-            <!--- Formulario cadastro de produto --->
-            <div id="form-product" class="container d-none">
-                <div class="d-flex justify-content-center mt-4">
-                    <form enctype="multipart/form-data" action="" method="post">
-                        @csrf
-                        <div class="form-group py-2">
-                            <input type="text" class="form-control input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Nome">
-                        </div>
-                        <div class="form-group py-2">
-                            <input type="text" class="form-control input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Fabricante">
-                        </div>
-                        <div class="form-group py-2">
-                            <input type="number" min="1" class="form-control input-border input p-0" id="estoque" name="estoque" style="height: 40px;" placeholder="Estoque (total em produto)">
-                        </div>
-                        <div class="form-group py-2">
-                            <input type="text" class="form-control input-border input p-0" id="preco" name="preco" style="height: 40px;" placeholder="Preço unidade">
-                        </div>
-                        <div class="form-group py-2">
-                            <label for="exampleInputEmail1" class="d-block input">Categoria</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="roupa" id="roupa" value="option1">
-                                <label class="form-check-label input" for="inlineRadio1">Roupa</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="lingirier" id="lingirier" value="option2">
-                                <label class="form-check-label check-per" for="inlineRadio2">Langirier</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="calcado" id="calcado" value="option2">
-                                <label class="form-check-label check-per" for="inlineRadio2">Calçado</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="bolsa" id="bolsa" value="option2">
-                                <label class="form-check-label check-per" for="inlineRadio2">Bolsa</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="perfume" id="perfume" value="option2">
-                                <label class="form-check-label check-per" for="inlineRadio2">Perfume</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="maquiagem" id="maquiagem" value="option2">
-                                <label class="form-check-label check-per" for="inlineRadio2">Maquiagem</label>
-                            </div>
 
+            <!--- Escolher cadastro --->
+            <div id="form-options" class="container d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="container" style="width:60%;">
+                        <div class="d-block">
+                            <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-categoria"><strong>Cadastrar categoria</strong></button>
                         </div>
-                        <div class="form-group py-2">
-                            <label for="exampleInputEmail1" class="input">Sub categoria</label>
-                            <select class="form-control form-control-sm input-border">
-                                <option>Selecione uma sub categoria</option>
-                            </select>
+                        <div class="d-block">
+                            <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-produto"><strong>Cadastrar produto</strong></button>
                         </div>
-                        <div class="form-group py-2">
-                            <label for="exampleInputEmail1" class="d-block input">Tamanho</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label check-per" for="inlineCheckbox1">P</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label check-per" for="inlineCheckbox2">M</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label check-per" for="inlineCheckbox2">G</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label check-per" for="inlineCheckbox2">GG</label>
-                            </div>
-                            <div class="form-group my-3">
-                                <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
-                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                    </div>
+                </div>
+            </div>
+            
+            <!--- Formulario de Categoria --->
+            <div id="form-categoria" class="container d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="container" style="width:60%;">
+                        <div class="container d-flex justify-content-around">
+                            <h4 class="cor">Cadastre uma categoria</h4>
+                            <button class="footer rounded" id="fechar-categoria"><strong>voltar</strong></button>
+                        </div>
+                        <form class="w-100" action="" method="post">
+                            @csrf
+                            <div class="form-group py-2">
+                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Nome">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
                                 <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--- Formulario cadastro de produto --->
+            <div id="form-product" class="container d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="container" style="width:60%;">
+                        <div class="container d-flex justify-content-around">
+                            <h4 class="cor">Cadastre um produto</h4>
+                            <button class="footer rounded" id="fechar-produto"><strong>voltar</strong></button>
                         </div>
-                    </form>
+                        <form enctype="multipart/form-data" class="w-100" action="" method="post">
+                            @csrf
+                            <div class="form-group py-2">
+                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Nome">
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Fabricante">
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="number" min="1" class="w-100 input-border input p-0" id="estoque" name="estoque" style="height: 40px;" placeholder="Estoque (total em produto)">
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="text" class="w-100 input-border input p-0" id="preco" name="preco" style="height: 40px;" placeholder="Preço unidade">
+                            </div>
+                            <div class="form-group py-2">
+                                    <select class="w-100 bg-white input form-control-sm input-border">
+                                        <option>Selecione uma categoria</option>
+                                    </select>
+                            </div>
+                            <div class="form-group py-2">
+                                <select class="w-100 bg-white input  form-control-sm input-border">
+                                    <option>Selecione uma sub categoria</option>
+                                </select>
+                            </div>
+                            <div class="form-group py-2">
+                                <label for="exampleInputEmail1" class="d-block input">Tamanho</label>
+                                <div class="form-check input form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label check-per" for="inlineCheckbox1">P</label>
+                                </div>
+                                <div class="form-check input form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label check-per" for="inlineCheckbox2">M</label>
+                                </div>
+                                <div class="form-check input form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label check-per" for="inlineCheckbox2">G</label>
+                                </div>
+                                <div class="form-check input form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label check-per" for="inlineCheckbox2">GG</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
+                                <input class="form-control" id="formFileSm" type="file">
+                            </div>
+                            <div class="form-group my-3 d-flex justify-content-center">
+                                <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -256,30 +278,30 @@
         </div>  
 
         <!--- Footer --->
-        <footer class="text-center footer text-lg-start borda-nav bottom-fixed">
+        <footer class="text-center footer text-lg-start bottom-fixed">
             <section class="pt-3">
                 <div class="container text-center text-md-start mt-5">
                     <div class="row mt-3">
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                            <h4 class="titulo-card">Política & termos</h4>
-                            <p>
+                        <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h1 class="">Política & termos</h1>
+                            <h4>
                                 <a href="" class="text-decoration-underline">Política de privacidade</a>
-                            </p>
-                            <p>
+                            </h4>
+                            <h4>
                                 <a href="" class="text-decoration-underline">Termos de uso</a>
-                            </p>
+                            </h4>
                         </div>
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                            <h4 class="titulo-card">Contato</h4>
-                            <p>
+                            <h1 class="">Contato</h1>
+                            <h4>
                                 contato@coisasdemulher.com
-                            </p>
+                            </h4>
                         </div>
                     </div>
                 </div>
             </section>
             <div class="text-center footer p-4">
-                <p>© 2022 Copyright: coisasdemulher.com</p>
+                <h5>© 2022 Copyright: coisasdemulher.com</h5>
             </div>
         </footer>
 
@@ -300,15 +322,3 @@
         });
     </script>
 </html>
-            <!--- Nav bar
-            <nav class="navbar navbar-expand-lg bg-white p-0">
-                <div class="d-block w-100">
-                    <div class="d-flex justify-content-around">
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto mx-4">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            --->
