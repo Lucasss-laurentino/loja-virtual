@@ -96,8 +96,16 @@
     border-left: none;
 
     border-radius: 0;
+
+    outline: 0;
+}
+input-border:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
 }
 
+input-border:-webkit-autofill {
+    -webkit-text-fill-color: #F86666 !important;
+}
 .input {    
     color: #F86666;
     font-size: 13px;

@@ -159,13 +159,12 @@
                             <h4 class="cor">Cadastre uma categoria</h4>
                             <button class="footer rounded" id="fechar-categoria"><strong>voltar</strong></button>
                         </div>
-                        <form class="w-100" action="{{ route('categories.store') }}" method="post">
-                            @csrf
+                        <form class="w-100" id="form-cat">
                             <div class="form-group py-2">
                                 <input type="text" class="w-100 input-border input p-0" name="categoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Categoria">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
-                                <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                                <button class="footer rounded" id="insert-category" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
                             </div>
                         </form>
                     </div>
@@ -181,7 +180,35 @@
                             <button class="footer rounded" id="fechar-sub-categoria"><strong>voltar</strong></button>
                         </div>
                         <div class="container d-block">
-                            <ul class="list-group">
+                            <ul class="list-group" id="list-categories">
+                            </ul>
+                            <ul class="list-group d-none" id="list-sub-categories">
+                            </ul>
+                            <div class="d-flex justify-content-center d-none" id="form-create-sub-category">
+                                <form style="width:50%;" id="form-subCategory">
+                                    <div class="form-group py-2">
+                                        <input type="text" class="w-100 input-border input p-0" name="subCategoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Sub categoria">
+                                    </div>
+                                    <div class="form-group my-3 d-flex justify-content-center">
+                                        <button class="footer rounded" style="height: 35px; width:60%;" id="btn-create-subCategory"><strong>Cadastrar</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- lista de categoria
+            <div id="list-category" class="container d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="container" style="width:80%;">
+                        <div class="container d-flex justify-content-around">
+                            <p id="subCategoryOptions" class="cor m-0">Escolha uma categoria</p>
+                            <button class="footer rounded" id="fechar-sub-categoria"><strong>voltar</strong></button>
+                        </div>
+                        <div class="container d-block">
+                            <ul class="list-group" id="list-categories">
                                 @foreach($categories as $category)
                                 <li class="list-group-item d-flex justify-content-center border-white text-center list-categories" id="category{{ $category->id }}">
                                     <div class="container" style="width:50%;">
@@ -220,7 +247,7 @@
                     </div>
                 </div>
             </div>
-
+            --->
             <!--- Formulario cadastro de produto --->
             <div id="form-product" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
@@ -238,18 +265,18 @@
                                 <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Fabricante">
                             </div>
                             <div class="form-group py-2">
-                                <input type="number" min="1" class="w-100 input-border input p-0" id="estoque" name="estoque" style="height: 40px;" placeholder="Estoque (total em produto)">
-                            </div>
-                            <div class="form-group py-2">
                                 <input type="text" class="w-100 input-border input p-0" id="preco" name="preco" style="height: 40px;" placeholder="Preço unidade">
                             </div>
                             <div class="form-group py-2">
-                                    <select class="w-100 bg-white input form-control-sm input-border">
-                                        <option>Selecione uma categoria</option>
+                                    <select class="w-100 bg-white input form-control-sm input-border" id="select-category">
+                                        <option >Selecione uma categoria</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                             </div>
                             <div class="form-group py-2">
-                                <select class="w-100 bg-white input  form-control-sm input-border">
+                                <select class="w-100 bg-white input  form-control-sm input-border" id="select-subCategory">
                                     <option>Selecione uma sub categoria</option>
                                 </select>
                             </div>
@@ -366,6 +393,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/ajaxCreate.js') }}"></script>
     <script src="{{ asset('js/modal.js') }}"></script>
     <script src="{{ asset('js/active.js') }}"></script>
     <script src="{{ asset('js/adc-products.js') }}"></script>

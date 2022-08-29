@@ -8,17 +8,21 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function store(Request $request) {
-        
+
         Category::create([
             'name' => $request->categoryName,
             ]
         );
 
-        return to_route('produtos.index');
+        return 'true';
 
     }
 
-    public function selectSubCategories($id) {
-        dd($id);
+    public function selectCategories() {
+
+        $categories = Category::all();
+
+        return response()->json($categories);
+    
     }
 }

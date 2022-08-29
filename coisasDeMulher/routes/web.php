@@ -26,14 +26,12 @@ Route::resource('/produtos', ProdutosController::class)->only([
 ]);
 
 /* Route categories */
-Route::resource('/categories', CategoryController::class)->only([
-    'store'
-]);
-Route::post('/categories/selectSubCategories/{id}', [CategoryController::class, 'selectSubCategories'])->name('categories.subCategories');
+Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::post('/categories/selectCategories', [CategoryController::class, 'selectCategories'])->name('select.categories');
 
 /* Route sub categories */
 Route::post('/subCategories/{id}', [SubCategories::class, 'store'])->name('subCategory.store');
-
+Route::post('/subCategories/selectSubCategory/{id}', [SubCategories::class, 'selectSubCategory'])->name('select.subCategory');
 
 /* Route users */
 Route::get('/login/{provider}', [UserController::class, 'redirectToProvider'])->name('social.login');
