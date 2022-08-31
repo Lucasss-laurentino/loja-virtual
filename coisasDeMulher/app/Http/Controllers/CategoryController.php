@@ -27,4 +27,13 @@ class CategoryController extends Controller
         return response()->json($categories);
     
     }
+
+    public function delete($id) {
+
+        Category::where('id', $id)->delete();
+
+        $categories = Category::all();
+
+        return $categories;
+    }
 }

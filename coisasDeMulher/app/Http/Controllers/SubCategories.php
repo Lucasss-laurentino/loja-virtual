@@ -35,4 +35,14 @@ class SubCategories extends Controller
         return response()->Json($subCategories);
     
     }
+
+    public function delete($id) {
+
+        
+        SubCategory::where('id', $id)->delete();
+
+        $subCategories = SubCategory::all();
+
+        return $subCategories;
+    }
 }

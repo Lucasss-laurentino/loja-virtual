@@ -185,7 +185,7 @@
                 </div>
             </div>
 
-            <!--- lista de categoria ao selecionar sub categoria --->
+            <!--- lista de sub categoria ao selecionar categoria --->
             <div id="list-category" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
                     <div class="container" style="width:80%;">
