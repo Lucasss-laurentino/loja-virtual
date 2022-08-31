@@ -1,101 +1,164 @@
-// Adicionando e removendo classes d-none e d-block
+// Abrir menu para adms cadastrar produtos e categorias
 $(document).on('click', '#adc-product', function(e) {
     
-    e.preventDefault();
-
-
-    $('#carouselExampleControls').toggleClass('d-block');
-    $('#carouselExampleControls').toggleClass('d-none');
-
-    $('#form-options').toggleClass('d-none');
-    $('#form-options').toggleClass('d-block');
-
-});
-
-$(document).on('click', '#cadastrar-categoria', function(e) {
-    
-    e.preventDefault();
-
-
-    $('#form-options').toggleClass('d-block');
-    $('#form-options').toggleClass('d-none');
-
-    $('#form-categoria').toggleClass('d-none');
-    $('#form-categoria').toggleClass('d-block');
-});
-
-$(document).on('click', '#cadastrar-produto', function(e) {
-    
-    e.preventDefault();
-
-
-    $('#form-options').toggleClass('d-block');
-    $('#form-options').toggleClass('d-none');
-
-    $('#form-product').toggleClass('d-none');
-    $('#form-product').toggleClass('d-block');
-});
-
-$(document).on('click', '#fechar-categoria', function(e) {
-    
-    e.preventDefault();
-
-
-    $('#form-categoria').toggleClass('d-block');
-    $('#form-categoria').toggleClass('d-none');
-
-    $('#form-options').toggleClass('d-none');
-    $('#form-options').toggleClass('d-block');
-});
-
-$(document).on('click', '#fechar-produto', function(e) {
-    
-    e.preventDefault();
-
-
-    $('#form-product').toggleClass('d-block');
-    $('#form-product').toggleClass('d-none');
-
-    $('#form-options').toggleClass('d-none');
-    $('#form-options').toggleClass('d-block');
-});
-
-// listando sub categoria
-$(document).on('click', '#cadastrar-sub-categoria', function(e) {
-    
-    e.preventDefault();
-    
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/categories/selectCategories',
-        method: 'post',
-        success: function(resposta) {
-            
-            $('#list-categories').empty();
-            $.each(resposta, function(index, category){
-                $('#list-categories').append('<li class="list-group-item cor border-white text-center"><div class="container d-flex justify-content-center" style="width:50%;"><button class="mx-2 bg-white font cor hover-list button-category btn-name-category" value="'+category.id+'" id="btn-'+category.id+'">'+category.name+'</button></div></li>')
-            })
-
-        }
-    });
-
-    $('#form-options').toggleClass('d-block');
-    $('#form-options').toggleClass('d-none');
-
-    $('#list-category').toggleClass('d-none');
-    $('#list-category').toggleClass('d-block');
-});
-
-// formulario para cadastrar sub categoria
-$(document).on('click', '.btn-name-category', function(e) {
     e.preventDefault()
 
-    const id = this.value;
+    $('.menu-items-list').toggleClass('d-none')
+
+    $('.menu-items-list').toggleClass('list-menu')
+
+});
+
+// Abrir opção escolhida do menu
+$(document).on('click', '.menu-items', function(e) {
+
+    e.preventDefault();
+
+    $('.menu-items-list').toggleClass('d-none')
+    $('.menu-items-list').toggleClass('list-menu')
+
+    if(this.value === 1) {
+
+        // Antes de abrir está opção, fechar a outra aberta
+        $('#list-category').addClass('d-none');
+        $('#form-product').addClass('d-none');
+
+
+
+        $('#carouselExampleControls').addClass('d-none');
+        $('#form-category').removeClass('d-none');
     
-    $('#list-categories').toggleClass('d-none');
-    $('#list-sub-categories').toggleClass('d-none');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/categories/selectCategories',
+            method: 'post',
+            success: function(resposta) {
+
+                $('#categories-name').empty();
+                $.each(resposta, function(index, category){
+                    $('#categories-name').append('<li class=" border-white text-center">'+category.name+'</li>')
+                })
+    
+            }
+        });
+    }
+
+    if(this.value === 2) {
+
+        // Fechar opçoes aberta
+        $('#form-product').addClass('d-none');
+        $('#form-category').addClass('d-none');
+
+        $('#carouselExampleControls').addClass('d-none');
+
+        if($('#list-sub-categories').hasClass('d-block')){
+            
+            $('#list-sub-categories').removeClass('d-block')
+            
+            $('#list-sub-categories').addClass('d-none')
+
+            $('#form-create-sub-category').addClass('d-none')
+        }
+        $('#list-category').removeClass('d-none');
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/categories/selectCategories',
+            method: 'post',
+            success: function(resposta) {
+
+                $('#list-categories-names').empty();
+                $.each(resposta, function(index, category){
+                    $('#list-categories-names').append('<li class="text-center category-identifier" id="category'+category.id+'" value="'+category.id+'">'+category.name+'</li>')
+                })
+    
+            }
+        });
+
+
+    }
+
+    if(this.value === 3) {
+
+        // Fechar opçoes aberta
+        $('#list-category').addClass('d-none');
+        $('#form-category').addClass('d-none');
+
+        $('#carouselExampleControls').addClass('d-none');
+        
+        $('#form-product').removeClass('d-none');
+
+    }
+})
+
+// Fechar categoria
+$(document).on('click', '#close-category', function(e) {
+    
+    e.preventDefault();
+
+    $('.menu-items-list').toggleClass('d-none')
+    $('.menu-items-list').toggleClass('list-menu')
+
+    $('#form-category').addClass('d-none');
+
+    $('#carouselExampleControls').removeClass('d-none');
+
+});
+
+// Cadastrar uma categoria
+$(document).on('click', '#create-category', function(e) {
+    
+    e.preventDefault()
+
+    const categoryName = $('#categoryName').val()
+    
+    if(categoryName.length < 2){
+
+        $('#erro-create-category').html('Nome para categoria muito curto')
+
+    } else if ($.isNumeric(categoryName)) {
+
+        $('#erro-create-category').html('Nome para categoria não pode conter números')
+
+    } else {
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/categories/store',
+            method: 'post',
+            data: $('#form-cat').serialize(),
+            dataType: 'json',
+            success: function(resposta) {
+
+                $('#categories-name').empty();
+                $.each(resposta, function(index, category){
+                    $('#categories-name').append('<li class=" border-white text-center">'+category.name+'</li>')
+                })
+
+                $('#categoryName').val('')
+    
+            }
+        });
+    
+    }
+
+})
+
+// Quando clicar em categoria, mostar suas sub categorias e formulario para cadastro
+$(document).on('click', '.category-identifier', function(e) {
+    
+    e.preventDefault();
+
+    const id = this.value
+
+    $('.category-identifier').addClass('d-none')
+    $('#category'+id).removeClass('d-none')
 
     $.ajax({
         headers: {
@@ -104,17 +167,19 @@ $(document).on('click', '.btn-name-category', function(e) {
         url: '/subCategories/selectSubCategory/'+id,
         method: 'post',
         success: function(resposta) {
-
+            $('#list-sub-categories').removeClass('d-none');
+            $('#list-sub-categories').addClass('d-block');
             $('#list-sub-categories').empty();
             $.each(resposta, function(index, subCategory){
-                $('#list-sub-categories').append('<li class="list-group-item cor border-white text-center"><div class="container d-flex justify-content-center" style="width:50%;"><p class="mx-2 bg-white font cor hover-list button-category btn-name-category">'+subCategory.subCategoryName+'</p></div></li>')
+                $('#list-sub-categories').append('<li class="text-center" id="" value="">'+subCategory.subCategoryName+'</li>')
             })
-            
+
         }
     });
 
-    $('#form-create-sub-category').toggleClass('d-none');
+    $('#form-create-sub-category').removeClass('d-none')
 
+    // Criar e listar sub categorias com a categoria recem criada
     $(document).on('click', '#btn-create-subCategory', function(e) {
     
         e.preventDefault();
@@ -128,47 +193,80 @@ $(document).on('click', '.btn-name-category', function(e) {
             data: $('#form-subCategory').serialize(),
             dataType: 'json',
             success: function(resposta) {
-                if(resposta === true) {
-                    console.log('criado');
-                }
+            
+                $('#list-sub-categories').empty();
+            
+                    $.each(resposta, function(index, subCategory){
+                        $('#list-sub-categories').append('<li class="text-center" id="" value="">'+subCategory.subCategoryName+'</li>')
+                
+                })
+
+                $('#subCategoryName').val('')
+            
             }
         });
+    });    
+
+})
+
+// Fechar sub categorias
+$(document).on('click', '#close-sub-category', function(e) {
+
+    if($('#list-sub-categories').hasClass('d-block')) {
+        
+        $('#list-sub-categories').removeClass('d-block')
+        
+        $('#list-sub-categories').addClass('d-none')
     
-    
-    
-    });
+    }
+
+    $('#list-category').addClass('d-none')
+    $('#form-create-sub-category').addClass('d-none')
+
+
+    $('.menu-items-list').removeClass('d-none')
+    $('.menu-items-list').addClass('list-menu')
+
+    $('#carouselExampleControls').removeClass('d-none');
     
 });
 
-// mostrar lista de sub categorias e formulário para cadastrar uma
-$(document).on('click', '.button-category', function(e) {
-
+// fechar produto
+$(document).on('click', '#close-product', function(e) {
+    
     e.preventDefault();
 
-    const valBtn = $(this).val()
+    $('#form-product').addClass('d-none')
 
-    $('.list-categories').toggleClass(' d-none');
+    $('.menu-items-list').removeClass('d-none')
+    $('.menu-items-list').addClass('list-menu')
 
-    $('#category'+valBtn).toggleClass('d-none');
-
-    $('#list-sub-categories'+valBtn).toggleClass('d-none');
-    
-    $('#subCategoryOptions').html('Cadastre uma sub categoria')
-
-    $('#cima'+valBtn).toggleClass('d-none')
-    $('#baixo'+valBtn).toggleClass('d-none')
+    $('#carouselExampleControls').removeClass('d-none');
 });
 
-$(document).on('click', '#fechar-sub-categoria', function(e) {
 
-    $('#list-category').toggleClass('d-none')
-    $('#form-options').toggleClass(' d-none');
-
+// Select category
+$(document).ready(function(e) {
     
-});
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/categories/selectCategories',
+        method: 'post',
+        success: function(resposta) {
+            
+            $('#select-category').append('<option value="">Selecione uma categoria</option>');
+            $.each(resposta, function(index, category){
+                $('#select-category').append('<option value="'+category.id+'">'+category.name+'</option>')
+            })
+    
+        }
+    });
 
+})
 // Select de categorias e sub categorias para cadastrar produto
-$('#select-category').on('change', function(e) {
+$('#select-category').change(function(e) {
 
     e.preventDefault();
 
@@ -182,7 +280,7 @@ $('#select-category').on('change', function(e) {
         method: 'post',
         success: function(resposta) {
 
-            $('#select-subCategory').empty();
+            $('#select-subCategory').append('<option value="">Selecione uma sub categoria</option>');
             $.each(resposta, function(index, subCategory){
                 
                 $('#select-subCategory').append('<option value="'+subCategory.id+'">'+subCategory.subCategoryName+'</option>')

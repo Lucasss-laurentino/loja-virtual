@@ -25,6 +25,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
         <!-- Styles -->
         <style>
             /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
@@ -72,15 +73,6 @@
                         @endif
                         @if(session()->get('user') != null)
                         <li class="nav-item">
-                            <div class="container-flui w-100 mt-2 mt-md-3 d-flex justify-content-center">
-                                <button href="" id="adc-product" class="nav-link bg-white items-menu d-flex alin-self-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center items-menu justify-content-center" href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -93,6 +85,15 @@
                                     <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                                 </svg>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="container-flui w-100 mt-2 mt-md-3 d-flex justify-content-center">
+                                <button href="" id="adc-product" class="nav-link bg-white items-menu d-flex alin-self-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </li>
                         @endif
                         @if(session()->get('user') === null)
@@ -107,6 +108,31 @@
                     </ul>
                 </div>
             </nav>
+
+            <!--- Menu cadastramento de produtos --->
+            <div class="d-flex justify-content-end container-menu-fundo" style="width:100%;">
+                <ul class="menu-items-list d-none" style="width:40%;">
+                    <li class="menu-items d-flex align-items-center" value="1">
+                        Categoria 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-node-plus-fill" viewBox="0 0 16 16">
+                            <path d="M11 13a5 5 0 1 0-4.975-5.5H4A1.5 1.5 0 0 0 2.5 6h-1A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h1A1.5 1.5 0 0 0 4 8.5h2.025A5 5 0 0 0 11 13zm.5-7.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </li>
+                    <li class="menu-items d-flex align-items-center" value="2">
+                        Sub categoria
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-node-plus-fill" viewBox="0 0 16 16">
+                            <path d="M11 13a5 5 0 1 0-4.975-5.5H4A1.5 1.5 0 0 0 2.5 6h-1A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h1A1.5 1.5 0 0 0 4 8.5h2.025A5 5 0 0 0 11 13zm.5-7.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 1 0z"/>
+                        </svg>
+
+                    </li>
+                    <li class="menu-items d-flex align-items-center" value="3">
+                        Produto
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-node-plus-fill" viewBox="0 0 16 16">
+                            <path d="M11 13a5 5 0 1 0-4.975-5.5H4A1.5 1.5 0 0 0 2.5 6h-1A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h1A1.5 1.5 0 0 0 4 8.5h2.025A5 5 0 0 0 11 13zm.5-7.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </li>
+                </ul>
+            </div>
 
             <!--- Carrousel --->
             <div id="carouselExampleControls" class="carousel slide d-block" data-bs-ride="carousel">
@@ -131,63 +157,51 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-
-            <!--- Escolher opções --->
-            <div id="form-options" class="container d-none">
-                <div class="d-flex justify-content-center mt-4">
-                    <div class="container" style="width:60%;">
-                        <div class="d-block">
-                            <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-categoria"><strong>Cadastrar categoria</strong></button>
-                        </div>
-                        <div class="d-block">
-                            <form method="post">
-                                <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-sub-categoria"><strong>Cadastrar sub categoria</strong></button>
-                            </form>
-                        </div>
-                        <div class="d-block">
-                            <button class="w-100 btn btn-lg footer rounded my-2" id="cadastrar-produto"><strong>Cadastrar produto</strong></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             <!--- Formulario de Categoria --->
-            <div id="form-categoria" class="container d-none">
+            <div id="form-category" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
                     <div class="container" style="width:60%;">
                         <div class="container d-flex justify-content-around">
                             <h4 class="cor">Cadastre uma categoria</h4>
-                            <button class="footer rounded" id="fechar-categoria"><strong>voltar</strong></button>
+                            <button class="footer rounded" id="close-category"><strong>voltar</strong></button>
+                        </div>
+                        <div class="container d-flex justify-content-center">
+                            <ul id="categories-name" style="width:50%;">
+                            </ul>
                         </div>
                         <form class="w-100" id="form-cat">
                             <div class="form-group py-2">
-                                <input type="text" class="w-100 input-border input p-0" name="categoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Categoria">
+                                <input type="text" class="w-100 input-border input p-0" id="categoryName" name="categoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Categoria">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
-                                <button class="footer rounded" id="insert-category" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                                <button class="footer rounded" id="create-category" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                            </div>
+                            <div class="form-group py-2">
+                                <h5 class="text-danger" id="erro-create-category"></h5>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <!--- lista de categoria --->
+            <!--- lista de categoria ao selecionar sub categoria --->
             <div id="list-category" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
                     <div class="container" style="width:80%;">
                         <div class="container d-flex justify-content-around">
                             <p id="subCategoryOptions" class="cor m-0">Escolha uma categoria</p>
-                            <button class="footer rounded" id="fechar-sub-categoria"><strong>voltar</strong></button>
+                            <button class="footer rounded" id="close-sub-category"><strong>voltar</strong></button>
                         </div>
                         <div class="container d-block">
-                            <ul class="list-group" id="list-categories">
+                            <ul class="" id="list-categories-names">
                             </ul>
-                            <ul class="list-group d-none" id="list-sub-categories">
+                            <ul class="d-none" id="list-sub-categories">
                             </ul>
                             <div class="d-flex justify-content-center d-none" id="form-create-sub-category">
                                 <form style="width:50%;" id="form-subCategory">
                                     <div class="form-group py-2">
-                                        <input type="text" class="w-100 input-border input p-0" name="subCategoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Sub categoria">
+                                        <input type="text" class="w-100 input-border input p-0" id="subCategoryName" name="subCategoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Sub categoria">
                                     </div>
                                     <div class="form-group my-3 d-flex justify-content-center">
                                         <button class="footer rounded" style="height: 35px; width:60%;" id="btn-create-subCategory"><strong>Cadastrar</strong></button>
@@ -199,62 +213,13 @@
                 </div>
             </div>
 
-            <!--- lista de categoria
-            <div id="list-category" class="container d-none">
-                <div class="d-flex justify-content-center mt-4">
-                    <div class="container" style="width:80%;">
-                        <div class="container d-flex justify-content-around">
-                            <p id="subCategoryOptions" class="cor m-0">Escolha uma categoria</p>
-                            <button class="footer rounded" id="fechar-sub-categoria"><strong>voltar</strong></button>
-                        </div>
-                        <div class="container d-block">
-                            <ul class="list-group" id="list-categories">
-                                @foreach($categories as $category)
-                                <li class="list-group-item d-flex justify-content-center border-white text-center list-categories" id="category{{ $category->id }}">
-                                    <div class="container" style="width:50%;">
-                                        <button class="d-flex justify-content-around mx-2 bg-white font cor hover-list button-category" value="{{ $category->id }}">
-                                            {{ $category->name }}
-                                            <svg xmlns="http://www.w3.org/2000/svg" id="cima{{$category->id}}" width="18" height="18" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" id="baixo{{$category->id}}" width="18" height="18" fill="currentColor" class="bi bi-arrow-bar-down d-none" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
-                                            </svg>
-                                        </button>
-                                        <div class="d-none" id="list-sub-categories{{ $category->id }}">
-                                            <ul class="list-group">
-                                                @foreach($category->subCategories as $subCategory)
-                                                <li class="list-group-item cor border-white text-center">{{ $subCategory->subCategoryName }}</li>
-                                                @endforeach
-                                            </ul>
-                                            <div class="d-flex justify-content-center">
-                                                <form style="width:50%;" action="{{ route('subCategory.store', $category->id) }}" method="post">
-                                                    @csrf
-                                                    <div class="form-group py-2">
-                                                        <input type="text" class="w-100 input-border input p-0" name="subCategoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Sub categoria">
-                                                    </div>
-                                                    <div class="form-group my-3 d-flex justify-content-center">
-                                                        <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            --->
             <!--- Formulario cadastro de produto --->
             <div id="form-product" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
                     <div class="container" style="width:60%;">
                         <div class="container d-flex justify-content-around">
                             <h4 class="cor">Cadastre um produto</h4>
-                            <button class="footer rounded" id="fechar-produto"><strong>voltar</strong></button>
+                            <button class="footer rounded" id="close-product"><strong>voltar</strong></button>
                         </div>
                         <form enctype="multipart/form-data" class="w-100" action="" method="post">
                             @csrf
@@ -269,15 +234,10 @@
                             </div>
                             <div class="form-group py-2">
                                     <select class="w-100 bg-white input form-control-sm input-border" id="select-category">
-                                        <option >Selecione uma categoria</option>
-                                        @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
                                     </select>
                             </div>
                             <div class="form-group py-2">
                                 <select class="w-100 bg-white input  form-control-sm input-border" id="select-subCategory">
-                                    <option>Selecione uma sub categoria</option>
                                 </select>
                             </div>
                             <div class="form-group py-2">

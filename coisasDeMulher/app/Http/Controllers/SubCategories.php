@@ -11,13 +11,16 @@ class SubCategories extends Controller
     public function store(Request $request, $id) {
 
         $category = Category::where('id', $id)->first();
+        
 
         $subCategory = SubCategory::create([
             'subCategoryName' => $request->subCategoryName,
             'category_id' => $category->id,
         ]);
 
-        return 'true';
+        $allSubCategories = SubCategory::all();
+
+        return $allSubCategories;
 
     }
 

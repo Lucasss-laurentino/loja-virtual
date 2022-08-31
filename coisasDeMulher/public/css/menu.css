@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'honey';
+    src: url('../font/ananda_2/Ananda\ Black\ Personal\ Use.ttf');
+}
+
+/* Menu para cadastramento de produtos */
+.container-menu-fundo {
+    z-index: -1;
+}
+
+.list-menu {
+
+    color: white;
+    background-color: rgba(216, 71, 106, 0.6);
+    position: absolute;
+    z-index: 1;
+
+    animation: menu-show 0.2s ease-out alternate;
+    
+}
+@keyframes menu-show {
+    0% {
+        right: -350px;
+    }
+    100% {
+        right: 0px;
+    }
+}
+
+.li-items {
+    list-style: none;
+}
+
+.menu-items {
+
+    height: 40px;
+
+    color: white;
+
+    border-radius: 0;
+
+    font-family: 'honey';
+    font-size: 14px;
+    font-weight: lighter;
+
+    list-style: none;
+    
+    letter-spacing: 1px;
+
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid white;
+    border-left: none;
+
+}
+
+.menu-items:hover {
+
+    color: #F86666;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    cursor: pointer;
+
+}
+
+/* lista nome de categorias */
+#categories-name {
+
+    color: #F86666;
+
+    font-size: 20px;
+    font-family: 'honey';
+    font-weight: lighter;
+
+    letter-spacing: 1px;
+
+    margin-top: 10px;
+    list-style: none;
+
+}
+
+/* listar nome de categorias ao clicar em sub categorias */
+#list-categories-names {
+
+    color: #F86666;
+
+    font-size: 20px;
+    font-family: 'honey';
+    font-weight: lighter;
+
+    letter-spacing: 1px;
+
+    margin-top: 10px;
+    list-style: none;
+
+}
+#list-categories-names:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+#list-sub-categories {
+
+    color: #F86666;
+
+    font-size: 15px;
+    font-family: 'honey';
+    font-weight: lighter;
+
+    letter-spacing: 1px;
+
+    margin-top: 10px;
+    list-style: none;
+
+}
