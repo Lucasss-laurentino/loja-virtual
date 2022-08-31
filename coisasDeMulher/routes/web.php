@@ -29,11 +29,13 @@ Route::resource('/produtos', ProdutosController::class)->only([
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
 Route::post('/categories/selectCategories', [CategoryController::class, 'selectCategories'])->name('select.categories');
 Route::post('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+Route::post('/categories/selectCategoryInput/{id}', [CategoryController::class, 'returnCategory'])->name('category.return');
 
 /* Route sub categories */
 Route::post('/subCategories/{id}', [SubCategories::class, 'store'])->name('subCategory.store');
 Route::post('/subCategories/selectSubCategory/{id}', [SubCategories::class, 'selectSubCategory'])->name('select.subCategory');
 Route::post('/subCategories/delete/{id}', [subCategories::class, 'delete'])->name('subCategory.delete');
+
 /* Route users */
 Route::get('/login/{provider}', [UserController::class, 'redirectToProvider'])->name('social.login');
 Route::get('/login/{provider}/callback', [UserController::class, 'callback'])->name('social.callback');

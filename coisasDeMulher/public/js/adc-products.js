@@ -295,7 +295,6 @@ $(document).on('click', '#close-product', function(e) {
     $('#carouselExampleControls').removeClass('d-none');
 });
 
-
 // Select category
 $(document).ready(function(e) {
     
@@ -316,6 +315,7 @@ $(document).ready(function(e) {
     });
 
 })
+
 // Select de categorias e sub categorias para cadastrar produto
 $('#select-category').change(function(e) {
 

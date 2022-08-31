@@ -158,7 +158,7 @@
                 </button>
             </div>
             
-            <!--- Formulario de Categoria --->
+            <!--- Formulario  e listagem de Categoria --->
             <div id="form-category" class="container d-none">
                 <div class="d-flex justify-content-center mt-4">
                     <div class="container" style="width:60%;">
@@ -241,23 +241,29 @@
                                 </select>
                             </div>
                             <div class="form-group py-2">
-                                <label for="exampleInputEmail1" class="d-block input">Tamanho</label>
+                                <label for="exampleInputEmail1" class="d-block input">Tamanho (opcional)</label>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
                                     <label class="form-check-label check-per" for="inlineCheckbox1">P</label>
                                 </div>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2">
                                     <label class="form-check-label check-per" for="inlineCheckbox2">M</label>
                                 </div>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="3">
                                     <label class="form-check-label check-per" for="inlineCheckbox2">G</label>
                                 </div>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="4">
                                     <label class="form-check-label check-per" for="inlineCheckbox2">GG</label>
                                 </div>
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="number" name="quantidadeP" id="">
+                                <input type="number" name="quantidadeM" id="">
+                                <input type="number" name="quantidadeG" id="">
+                                <input type="number" name="quantidadeGG" id="">
                             </div>
                             <div class="form-group">
                                 <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
@@ -274,12 +280,9 @@
             <!--- Lista de categoria --->
             <div class="container-fluid">
                 <ul class="mt-5 border-category d-flex align-items-center list-x" style="height: 60px;">
-                    <li class="d-inline mx-5 items-menu list-category active" style="width: 15%;" value="1">Roupas</li>
-                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="2">Langirier</li>
-                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="3">Calçados</li>
-                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="4">Bolsas</li>
-                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="5">Perfumes</li>
-                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="6">Maquiagens</li>
+                    @foreach($categories as $category)
+                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="{{ $category->id }}">{{ $category->name }}</li>
+                    @endforeach
                 </ul>
             </div>
         

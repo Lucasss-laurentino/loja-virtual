@@ -36,4 +36,13 @@ class CategoryController extends Controller
 
         return $categories;
     }
+
+    public function returnCategory($id) {
+
+        $category = Category::where('id', $id)->first();
+
+        return $category;
+    
+    }
+
 }
