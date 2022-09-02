@@ -22,7 +22,8 @@ Route::get('/', function () {
 
 /* Route products */
 Route::resource('/produtos', ProdutosController::class)->only([
-    'index'
+    'index',
+    'store'
 ]);
 
 /* Route categories */

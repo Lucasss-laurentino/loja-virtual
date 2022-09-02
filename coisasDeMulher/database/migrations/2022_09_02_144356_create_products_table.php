@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('fabricante');
             $table->decimal('price');
-            $table->string('category');
-            $table->string('subCategory');
+            $table->foreignId('categories_id')->constrained()->onDelete('cascade');
+            $table->integer('subCategory');
             $table->string('img');
 
             $table->timestamps();

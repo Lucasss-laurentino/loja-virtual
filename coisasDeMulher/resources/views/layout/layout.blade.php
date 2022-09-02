@@ -221,56 +221,57 @@
                             <h4 class="cor">Cadastre um produto</h4>
                             <button class="footer rounded" id="close-product"><strong>voltar</strong></button>
                         </div>
-                        <form enctype="multipart/form-data" class="w-100" action="" method="post">
+                        <form enctype="multipart/form-data" class="w-100" id="form-insert-product" action="{{ route('produtos.store') }}" method="post">
                             @csrf
                             <div class="form-group py-2">
-                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Nome">
+                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" name="name" aria-describedby="emailHelp" placeholder="Nome">
                             </div>
                             <div class="form-group py-2">
-                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" placeholder="Fabricante">
+                                <input type="text" class="w-100 input-border input p-0" id="exampleInputEmail1" style="height: 40px;" aria-describedby="emailHelp" name="fabricante" placeholder="Fabricante">
                             </div>
                             <div class="form-group py-2">
-                                <input type="text" class="w-100 input-border input p-0" id="preco" name="preco" style="height: 40px;" placeholder="Preço unidade">
+                                <input type="number" class="w-100 input-border input p-0" id="preco" name="price" style="height: 40px;" name="priceUnit" placeholder="Preço unidade">
                             </div>
                             <div class="form-group py-2">
-                                    <select class="w-100 bg-white input form-control-sm input-border" id="select-category">
+                                    <select class="w-100 bg-white input form-control-sm input-border" name="category" id="select-category">
                                     </select>
                             </div>
                             <div class="form-group py-2">
-                                <select class="w-100 bg-white input  form-control-sm input-border" id="select-subCategory">
+                                <select class="w-100 bg-white input  form-control-sm input-border" name="subCategory" id="select-subCategory">
                                 </select>
                             </div>
                             <div class="form-group py-2">
                                 <label for="exampleInputEmail1" class="d-block input">Tamanho (opcional)</label>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
-                                    <label class="form-check-label check-per" for="inlineCheckbox1">P</label>
+                                    <input class="form-check-input check-tam checklist" name="checklist[]" type="checkbox" id="inlineCheckbox1" value="P">
+                                    <label class="form-check-label" for="inlineCheckbox1">P</label>
                                 </div>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2">
-                                    <label class="form-check-label check-per" for="inlineCheckbox2">M</label>
+                                    <input class="form-check-input check-tam checklist" name="checklist[]" type="checkbox" id="inlineCheckbox2" value="M">
+                                    <label class="form-check-label" for="inlineCheckbox2">M</label>
                                 </div>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="3">
-                                    <label class="form-check-label check-per" for="inlineCheckbox2">G</label>
+                                    <input class="form-check-input check-tam checklist" name="checklist[]" type="checkbox" id="inlineCheckbox3" value="G">
+                                    <label class="form-check-label" for="inlineCheckbox3">G</label>
                                 </div>
                                 <div class="form-check input form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="4">
-                                    <label class="form-check-label check-per" for="inlineCheckbox2">GG</label>
+                                    <input class="form-check-input check-tam checklist" name="checklist[]" type="checkbox" id="inlineCheckbox4" value="GG">
+                                    <label class="form-check-label" for="inlineCheckbox4">GG</label>
                                 </div>
                             </div>
-                            <div class="form-group py-2">
-                                <input type="number" name="quantidadeP" id="">
-                                <input type="number" name="quantidadeM" id="">
-                                <input type="number" name="quantidadeG" id="">
-                                <input type="number" name="quantidadeGG" id="">
+
+                            <div class="form-group input-quantidade-tamanho py-2 d-none" id="quantidade-input">
+                                <input type="number" class="d-none input input-border my-2" data-tamanho="P" name="quantidade[]" style="width:30%;" id="qtdP" placeholder="Quantidade P">
+                                <input type="number" class="d-none input input-border my-4" data-tamanho="M" name="quantidade[]" style="width:30%;" id="qtdM" placeholder="Quantidade M">
+                                <input type="number" class="d-none input input-border my-4" data-tamanho="G" name="quantidade[]" style="width:30%;" id="qtdG" placeholder="Quantidade G">
+                                <input type="number" class="d-none input input-border my-4" data-tamanho="GG" name="quantidade[]" style="width:30%;" id="qtdGG" placeholder="Quantidade GG">
                             </div>
                             <div class="form-group">
                                 <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
-                                <input class="form-control" id="formFileSm" type="file">
+                                <input class="form-control" name="img-product" id="formFileSm" type="file">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
-                                <button class="footer rounded" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
+                                <button class="footer rounded" id="insert-product" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
                             </div>
                         </form>
                     </div>

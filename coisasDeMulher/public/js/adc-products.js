@@ -92,6 +92,23 @@ $(document).on('click', '.menu-items', function(e) {
         
         $('#form-product').removeClass('d-none');
 
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/categories/selectCategories',
+            method: 'post',
+            success: function(resposta) {
+                
+                $('#select-category').append('<option value="">Selecione uma categoria</option>');
+                $.each(resposta, function(index, category){
+                    $('#select-category').append('<option value="'+category.id+'">'+category.name+'</option>')
+                })
+        
+            }
+        });
+    
+
     }
 })
 
@@ -295,27 +312,6 @@ $(document).on('click', '#close-product', function(e) {
     $('#carouselExampleControls').removeClass('d-none');
 });
 
-// Select category
-$(document).ready(function(e) {
-    
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/categories/selectCategories',
-        method: 'post',
-        success: function(resposta) {
-            
-            $('#select-category').append('<option value="">Selecione uma categoria</option>');
-            $.each(resposta, function(index, category){
-                $('#select-category').append('<option value="'+category.id+'">'+category.name+'</option>')
-            })
-    
-        }
-    });
-
-})
-
 // Select de categorias e sub categorias para cadastrar produto
 $('#select-category').change(function(e) {
 
@@ -330,7 +326,8 @@ $('#select-category').change(function(e) {
         url: '/subCategories/selectSubCategory/'+id,
         method: 'post',
         success: function(resposta) {
-
+            
+            $('#select-subCategory').empty();
             $('#select-subCategory').append('<option value="">Selecione uma sub categoria</option>');
             $.each(resposta, function(index, subCategory){
                 
@@ -342,6 +339,38 @@ $('#select-category').change(function(e) {
     });
 
 });
+
+// Ao marcar um checkbox com o tamanho do produto
+// mostrar input de quantidade de produtos daquele tamanho  
+$(document).on('click', '.checklist', function() {
+
+    $(this).toggleClass('checked');
+
+    $(document).find("input[name='checklist[]']").each(function(){
+
+        var check = $(this).val()
+
+        if($(this).hasClass("checked")) {
+        
+            $('.input-quantidade-tamanho').removeClass('d-none')
+
+            $('.input-quantidade-tamanho').find("input[name='quantidade[]']").each(function(){
+                
+                if($(this).data("tamanho") === check){
+                    $(this).removeClass('d-none')
+                    $(this).addClass('d-block')
+                }
+            })
+
+        } else {
+
+            $('#qtd'+check).addClass('d-none')
+        }
+    
+    });
+    
+})
+
 
 // Collapse
 $(document).on('click', '#teste', function(e) {
