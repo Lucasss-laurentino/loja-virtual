@@ -29,8 +29,9 @@ class ProdutosController extends Controller
             'price' => $request->price,
             'categories_id' => $request->category,
             'subCategory' => $request->subCategory,
-            'img' => $request->file('img-product')
+            //'img' => $request->file('img-product')
         ]);
+        $path = $request->file('img-product')->store('public/img-product'.$request->name);
 
         $checklist_tamanho = $request->checklist;
 

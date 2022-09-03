@@ -24,7 +24,7 @@ $(document).on('click', '.menu-items', function(e) {
         $('#form-product').addClass('d-none');
 
 
-
+        // Abrir formulario de categoria
         $('#carouselExampleControls').addClass('d-none');
         $('#form-category').removeClass('d-none');
     
@@ -51,16 +51,21 @@ $(document).on('click', '.menu-items', function(e) {
         $('#form-product').addClass('d-none');
         $('#form-category').addClass('d-none');
 
+        // Remover carrousel
         $('#carouselExampleControls').addClass('d-none');
 
+        // Se sub categorias estiver aberta
         if($('#list-sub-categories').hasClass('d-block')){
             
+            // Fecha
             $('#list-sub-categories').removeClass('d-block')
             
             $('#list-sub-categories').addClass('d-none')
 
             $('#form-create-sub-category').addClass('d-none')
         }
+
+        // Abrir lista de categorias
         $('#list-category').removeClass('d-none');
 
         $.ajax({
@@ -141,7 +146,9 @@ $(document).on('click', '.btn-trash-sub', function(e) {
     
     e.preventDefault()
 
-    const id = this.value
+    var id = this.value
+
+    var id_category = $(this).data('category-id');
 
     $.ajax({
         headers: {
@@ -149,17 +156,18 @@ $(document).on('click', '.btn-trash-sub', function(e) {
         },
         url: '/subCategories/delete/'+id,
         method: 'post',
+        data: {'id_category':id_category},
+        dataType: 'json',
         success: function(resposta) {
 
-            $('#list-sub-categories').empty();
+            $('#list-sub-categories').empty()
+
             $.each(resposta, function(index, subCategory){
-                $('#list-sub-categories').append('<li class="m-auto" style="width:30%;"><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
+                $('#list-sub-categories').append('<li class="d-block m-auto" style="width:30%;" id="category'+subCategory.id+'" value="'+subCategory.id+'"><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
             })
 
         }
     });
-
-
 
 })
 
@@ -206,7 +214,7 @@ $(document).on('click', '#create-category', function(e) {
 
                 $('#categories-name').empty();
                 $.each(resposta, function(index, category){
-                    $('#categories-name').append('<li class=" border-white text-center">'+category.name+'</li>')
+                    $('#categories-name').append('<li class=" border-white text-center d-flex justify-content-between my-3" style="width:100%;">'+category.name+'<div class="d-flex justify-content-between"><button class="btn btn-sm btn-trash" value="'+category.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
                 })
 
                 $('#categoryName').val('')
@@ -223,9 +231,9 @@ $(document).on('click', '.category-identifier', function(e) {
     
     e.preventDefault();
 
-    const id = this.value
-
-    $('.category-identifier').addClass('d-none')
+    var id = this.value
+    
+    $('.category-identifier').addClass('d-none') // li da lista de categorias de categorias
     $('#category'+id).removeClass('d-none')
 
     $.ajax({
@@ -235,50 +243,65 @@ $(document).on('click', '.category-identifier', function(e) {
         url: '/subCategories/selectSubCategory/'+id,
         method: 'post',
         success: function(resposta) {
-            $('#list-sub-categories').removeClass('d-none');
-            $('#list-sub-categories').addClass('d-block');
+            
+            /* criar lista com sub categorias */
             $('#list-sub-categories').empty();
+            $('#list-sub-categories').removeClass('d-none');
+            $('#list-sub-categories').addClass('d-block');            
             $.each(resposta, function(index, subCategory){
-                $('#list-sub-categories').append('<li class="m-auto" style="width:30%;" id="" value=""><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
+                $('#list-sub-categories').append('<li class="m-auto" style="width:30%;" id="" value=""><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" data-category-id="'+id+'" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
             })
 
         }
     });
 
+    // Mostrar formulario para cadastrar categoria
     $('#form-create-sub-category').removeClass('d-none')
 
-    // Criar e listar sub categorias com a categoria recem criada
-    $(document).on('click', '#btn-create-subCategory', function(e) {
-    
-        e.preventDefault();
-    
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: '/subCategories/'+id,
-            method: 'post',
-            data: $('#form-subCategory').serialize(),
-            dataType: 'json',
-            success: function(resposta) {
-            
-                $('#list-sub-categories').empty();
-            
-                    $.each(resposta, function(index, subCategory){
-                        $('#list-sub-categories').append('<li class="text-center" id="" value="">'+subCategory.subCategoryName+'</li>')
-                
-                })
 
-                $('#subCategoryName').val('')
-            
-            }
-        });
-    });    
+    if($('.botao-formulario-criar-categoria').length === 0) {
+
+        $('#div-btn-create-sub').append('<button class="footer botao-formulario-criar-categoria rounded" style="height: 35px; width:60%;" data-category="'+id+'" id="btn-create-subCategory"><strong>Cadastrar</strong></button>');
+
+    }
 
 })
 
+// Criar e listar sub categorias com a categoria recem criada
+$(document).on('click', '#btn-create-subCategory', function(e) {
+    
+    e.preventDefault();
+
+    var id = $(this).data('category');
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/subCategories/'+id,
+        method: 'post',
+        data: $('#form-subCategory').serialize(),
+        dataType: 'json',
+        success: function(resposta) {
+    
+            $('#list-sub-categories').empty();            
+            $.each(resposta, function(index, subCategory){
+                $('#list-sub-categories').append('<li class="m-auto" style="width:30%;" id="category'+subCategory.id+'" value="'+subCategory.id+'"><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
+            })
+
+            $('#subCategoryName').val('')
+        }
+
+    });
+
+});    
+
+
 // Fechar sub categorias
 $(document).on('click', '#close-sub-category', function(e) {
+
+    // Removendo botao para cadastrar sub categoria caso seja fechado o formulario de sub categoria
+    $('#btn-create-subCategory').remove();
 
     if($('#list-sub-categories').hasClass('d-block')) {
         

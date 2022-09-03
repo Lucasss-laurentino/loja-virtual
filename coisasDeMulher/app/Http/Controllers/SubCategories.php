@@ -12,37 +12,42 @@ class SubCategories extends Controller
 
         $category = Category::where('id', $id)->first();
         
+        if(!empty($category)) {
 
-        $subCategory = SubCategory::create([
-            'subCategoryName' => $request->subCategoryName,
-            'categories_id' => $category->id,
-        ]);
+            $subCategory = SubCategory::create([
+                'subCategoryName' => $request->subCategoryName,
+                'categories_id' => $category->id,
+            ]);
 
-        $allSubCategories = SubCategory::all();
+            $allSubCategories = SubCategory::where('categories_id', $category->id)->get();
 
-        return $allSubCategories;
+            return response()->Json($allSubCategories);
+    
+        } else {
+            return to_route('produtos.index');
+        }
+
 
     }
 
-    public function selectSubCategory(Request $request, $id) {
+    public function selectSubCategory($id) {
 
         $category = Category::where('id', $id)->get();
 
         $subCategories = SubCategory::where('categories_id', $id)->get();
-
-        $request->session()->put('categoryCreateSubCategory', $category);
         
         return response()->Json($subCategories);
     
     }
 
-    public function delete($id) {
-
+    public function delete(Request $request, $id) {
         
         SubCategory::where('id', $id)->delete();
 
-        $subCategories = SubCategory::all();
+        $subCategories = SubCategory::where('categories_id', $request->id_category)->get();
 
-        return $subCategories;
+        return response()->Json($subCategories);
+
+
     }
 }

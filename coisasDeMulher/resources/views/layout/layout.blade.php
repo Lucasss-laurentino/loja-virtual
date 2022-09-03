@@ -194,8 +194,10 @@
                             <button class="footer rounded" id="close-sub-category"><strong>voltar</strong></button>
                         </div>
                         <div class="container d-block">
+                            <!-- Ul de categorias --->
                             <ul class="" id="list-categories-names">
                             </ul>
+                            <!--- ul de sub categorias --->
                             <ul class="d-none" id="list-sub-categories">
                             </ul>
                             <div class="d-flex justify-content-center d-none" id="form-create-sub-category">
@@ -203,8 +205,7 @@
                                     <div class="form-group py-2">
                                         <input type="text" class="w-100 input-border input p-0" id="subCategoryName" name="subCategoryName" style="height: 40px;" aria-describedby="emailHelp" placeholder="Sub categoria">
                                     </div>
-                                    <div class="form-group my-3 d-flex justify-content-center">
-                                        <button class="footer rounded" style="height: 35px; width:60%;" id="btn-create-subCategory"><strong>Cadastrar</strong></button>
+                                    <div class="form-group my-3 d-flex justify-content-center" id="div-btn-create-sub">
                                     </div>
                                 </form>
                             </div>
