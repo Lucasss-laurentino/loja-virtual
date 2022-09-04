@@ -32,8 +32,6 @@ class SubCategories extends Controller
 
     public function selectSubCategory($id) {
 
-        $category = Category::where('id', $id)->get();
-
         $subCategories = SubCategory::where('categories_id', $id)->get();
         
         return response()->Json($subCategories);

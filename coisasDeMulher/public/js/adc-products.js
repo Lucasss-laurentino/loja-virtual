@@ -57,17 +57,20 @@ $(document).on('click', '.menu-items', function(e) {
         // Se sub categorias estiver aberta
         if($('#list-sub-categories').hasClass('d-block')){
             
-            // Fecha
+            // Fecha listagem de sub categorias
             $('#list-sub-categories').removeClass('d-block')
             
             $('#list-sub-categories').addClass('d-none')
 
+            // fechar formulario de sub categoria
             $('#form-create-sub-category').addClass('d-none')
+                
         }
 
         // Abrir lista de categorias
         $('#list-category').removeClass('d-none');
 
+        // Ajax para criar listagem de categorias com o valor sendo o id e classe category-identifier
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -117,6 +120,54 @@ $(document).on('click', '.menu-items', function(e) {
     }
 })
 
+// Quando clicar em categoria, mostar suas sub categorias e formulario para cadastro
+$(document).on('click', '.category-identifier', function(e) {
+    
+    e.preventDefault();
+
+    var id = this.value
+    
+    // Remova todas categorias
+    $('.category-identifier').addClass('d-none')
+    
+    // Deixe so a categoria escolhida
+    $('#category'+id).removeClass('d-none')
+
+    // Ajax para listar sub categorias da categoria escolhida
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/subCategories/selectSubCategory/'+id,
+        method: 'post',
+        success: function(resposta) {
+            
+            /* criar lista com sub categorias */
+            $('#list-sub-categories').empty();
+            $('#list-sub-categories').removeClass('d-none');
+            $('#list-sub-categories').addClass('d-block');  
+
+            $.each(resposta, function(index, subCategory){
+                $('#list-sub-categories').append('<li class="d-block m-auto" style="width:30%;"><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" data-category-id="'+id+'" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
+            })
+
+        }
+    });
+
+    // Mostrar formulario para cadastrar categoria
+    $('#form-create-sub-category').removeClass('d-none')
+
+
+    // Se ja existir o botao de criar sub categoria, nao crie outro
+    if($('.botao-formulario-criar-categoria').length === 0) {
+
+        $('#div-btn-create-sub').append('<button class="footer botao-formulario-criar-categoria rounded" style="height: 35px; width:60%;" data-category="'+id+'" id="btn-create-subCategory"><strong>Cadastrar</strong></button>');
+
+    }
+
+})
+
+
 // Excluir uma categoria
 $(document).on('click', '.btn-trash', function(e){
     
@@ -161,10 +212,14 @@ $(document).on('click', '.btn-trash-sub', function(e) {
         success: function(resposta) {
 
             $('#list-sub-categories').empty()
-
             $.each(resposta, function(index, subCategory){
-                $('#list-sub-categories').append('<li class="d-block m-auto" style="width:30%;" id="category'+subCategory.id+'" value="'+subCategory.id+'"><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
+
+                $('#list-sub-categories').append('<li class="d-block m-auto" style="width:30%;"><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" data-category-id="'+id+'" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
+            
             })
+
+            $('#category'+id_category).click()
+
 
         }
     });
@@ -226,46 +281,6 @@ $(document).on('click', '#create-category', function(e) {
 
 })
 
-// Quando clicar em categoria, mostar suas sub categorias e formulario para cadastro
-$(document).on('click', '.category-identifier', function(e) {
-    
-    e.preventDefault();
-
-    var id = this.value
-    
-    $('.category-identifier').addClass('d-none') // li da lista de categorias de categorias
-    $('#category'+id).removeClass('d-none')
-
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/subCategories/selectSubCategory/'+id,
-        method: 'post',
-        success: function(resposta) {
-            
-            /* criar lista com sub categorias */
-            $('#list-sub-categories').empty();
-            $('#list-sub-categories').removeClass('d-none');
-            $('#list-sub-categories').addClass('d-block');            
-            $.each(resposta, function(index, subCategory){
-                $('#list-sub-categories').append('<li class="m-auto" style="width:30%;" id="" value=""><div class="d-flex justify-content-between">'+subCategory.subCategoryName+'<button class="btn btn-sm btn-trash-sub" data-category-id="'+id+'" value="'+subCategory.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button></div></li>')
-            })
-
-        }
-    });
-
-    // Mostrar formulario para cadastrar categoria
-    $('#form-create-sub-category').removeClass('d-none')
-
-
-    if($('.botao-formulario-criar-categoria').length === 0) {
-
-        $('#div-btn-create-sub').append('<button class="footer botao-formulario-criar-categoria rounded" style="height: 35px; width:60%;" data-category="'+id+'" id="btn-create-subCategory"><strong>Cadastrar</strong></button>');
-
-    }
-
-})
 
 // Criar e listar sub categorias com a categoria recem criada
 $(document).on('click', '#btn-create-subCategory', function(e) {
@@ -290,6 +305,8 @@ $(document).on('click', '#btn-create-subCategory', function(e) {
             })
 
             $('#subCategoryName').val('')
+            $('#category'+id).click()
+
         }
 
     });
