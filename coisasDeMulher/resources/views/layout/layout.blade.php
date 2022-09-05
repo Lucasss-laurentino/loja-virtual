@@ -269,7 +269,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
-                                <input class="form-control" name="img-product" id="formFileSm" type="file">
+                                <input class="form-control" name="img-product" accept="image/gif, image/jpeg, image/png" id="formFileSm" type="file">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
                                 <button class="footer rounded" id="insert-product" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>

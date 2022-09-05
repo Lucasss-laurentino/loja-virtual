@@ -22,6 +22,10 @@ class ProdutosController extends Controller
 
     public function store(Request $request) {
 
+        // Caminho para imagem do produto
+        $path = $request->file('img-product')->store('img-product'.$request->name, 'public');
+        $request->path = $path;
+
         // Cadastro de produtos
         $produto = Product::create([
             'name' => $request->name,
@@ -29,33 +33,24 @@ class ProdutosController extends Controller
             'price' => $request->price,
             'categories_id' => $request->category,
             'subCategory' => $request->subCategory,
-            //'img' => $request->file('img-product')
+            'img' => $request->path,
         ]);
-        $path = $request->file('img-product')->store('public/img-product'.$request->name);
 
-        $checklist_tamanho = $request->checklist;
+        $contador = 0;
+        $teste = [];
+        foreach($request->checklist as $tamanho) {
+            
+            $size = Size::create([
+                'size' => $tamanho,
+                'quantity' => $request->quantidade[$contador],
+                'product_id' => $produto->id,
+            ]);
 
-        // cadastro de sizes
-        foreach($request->quantidade as $quantidade){
-
-            if($quantidade != null){
-
-                foreach($checklist_tamanho as $tamanho) {
-
-                    $size = Size::create([
-                        'size' => $tamanho , 
-                        'quantity' => $quantidade,
-                        'product_id' => $produto->id
-                    ]);
-    
-                }
-
-            }
-
+            $contador = $contador + 1;
+        
         }
 
         return to_route('produtos.index');
 
     }
-
 }

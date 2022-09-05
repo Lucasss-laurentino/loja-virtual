@@ -167,7 +167,6 @@ $(document).on('click', '.category-identifier', function(e) {
 
 })
 
-
 // Excluir uma categoria
 $(document).on('click', '.btn-trash', function(e){
     
@@ -410,7 +409,6 @@ $(document).on('click', '.checklist', function() {
     });
     
 })
-
 
 // Collapse
 $(document).on('click', '#teste', function(e) {
