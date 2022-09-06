@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -43,6 +44,13 @@ class CategoryController extends Controller
 
         return $category;
     
+    }
+
+    public function showProducts(Request $request) {
+
+        $products = Product::where('categories_id', $request->id_category)->get();
+
+        return response()->Json($products);
     }
 
 }

@@ -16,8 +16,12 @@ class ProdutosController extends Controller
 
         $categories = Category::query()->orderBy('id')->get();
 
-        return view('produtos.index')->with('categories', $categories);
+        $products = Product::query()->orderBy('price')->get();
+
+        return view('produtos.index')->with('categories', $categories)->with('products', $products);
     
+        // return response()->Json($categories, $products);
+
     }
 
     public function store(Request $request) {
@@ -37,7 +41,6 @@ class ProdutosController extends Controller
         ]);
 
         $contador = 0;
-        $teste = [];
         foreach($request->checklist as $tamanho) {
             
             $size = Size::create([
@@ -53,4 +56,5 @@ class ProdutosController extends Controller
         return to_route('produtos.index');
 
     }
+
 }

@@ -269,7 +269,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="formFileSm" class="form-label input">Carregue uma imagem do produto</label>
-                                <input class="form-control" name="img-product" accept="image/gif, image/jpeg, image/png" id="formFileSm" type="file">
+                                <input class="form-control" name="img-product" accept="image/gif, image/jpeg, image/png, image/webp" id="formFileSm" type="file">
                             </div>
                             <div class="form-group my-3 d-flex justify-content-center">
                                 <button class="footer rounded" id="insert-product" style="height: 35px; width:60%;"><strong>Cadastrar</strong></button>
@@ -283,7 +283,7 @@
             <div class="container-fluid">
                 <ul class="mt-5 border-category d-flex align-items-center list-x" style="height: 60px;">
                     @foreach($categories as $category)
-                    <li class="d-inline mx-5 items-menu list-category" style="width: 15%;" value="{{ $category->id }}">{{ $category->name }}</li>
+                    <li class="d-inline mx-5 items-menu list-category productThisCategory " style="width: 15%;" value="{{ $category->id }}">{{ $category->name }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -358,7 +358,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/changeCategory.js') }}"></script>
+    <script src="{{ asset('js/ready.js') }}"></script>
     <script src="{{ asset('js/ajaxCreate.js') }}"></script>
+    <script src="{{ asset('js/card-responsive.js') }}"></script>
     <script src="{{ asset('js/modal.js') }}"></script>
     <script src="{{ asset('js/active.js') }}"></script>
     <script src="{{ asset('js/adc-products.js') }}"></script>

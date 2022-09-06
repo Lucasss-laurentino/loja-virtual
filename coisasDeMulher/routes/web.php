@@ -25,12 +25,14 @@ Route::resource('/produtos', ProdutosController::class)->only([
     'index',
     'store'
 ]);
+//Route::post('/produtos/index', [ProdutosController::class, 'index']);
 
 /* Route categories */
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
 Route::post('/categories/selectCategories', [CategoryController::class, 'selectCategories'])->name('select.categories');
 Route::post('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 Route::post('/categories/selectCategoryInput/{id}', [CategoryController::class, 'returnCategory'])->name('category.return');
+Route::post('/showProducts', [CategoryController::class, 'showProducts']);
 
 /* Route sub categories */
 Route::post('/subCategories/{id}', [SubCategories::class, 'store'])->name('subCategory.store');
